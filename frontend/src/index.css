@@ -11,3 +11,48 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.button{
+      width:18%;
+      margin: 0 auto;
+      display: block;
+      margin-top: 25px;
+      color:#fff;
+      border: 3px solid rgba(0, 0, 0, 0);
+      border-radius: 3px;
+      padding: 10px 30px;
+      text-align: center;
+      font-size: 1.2em;
+      font-weight: 500;
+      cursor: pointer;
+      line-height: 1.2em;
+}
+
+
+.pricing-box{
+  display: inline-block;
+  width: 30%;
+  text-align: center;
+  margin: 0 1.5%;
+  padding: 20px 0;
+  box-sizing: border-box;
+  border: 1px solid #eee;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  transition: all 0.3s ease;
+  
+}
+.pricing-box:hover{
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+.pricing-box img{
+  width: 40%;
+}
+
+pricing-box p{
+    font-size: 10px;
+    margin: 0;
+    color: #666;
+    line-height: 16px
+}
