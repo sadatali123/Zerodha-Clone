@@ -6,7 +6,7 @@ function Pricing() {
     <div className="container">
       <div className="row mx-5">
         <div className="col-5">
-          <h2>Unbeatable pricing</h2>
+          <h2 className="fs-2">Unbeatable pricing</h2>
           <p className="text-muted mt-4">
             We pioneered the concept of discount broking and price transparency
             in India. Flat fees and no hidden charges.
@@ -18,7 +18,7 @@ function Pricing() {
         <div className="col-7 ml-5 mt-3">
           <div className="pricing-box">
             <img src="media\images\pricing0.svg" alt="Pricing" />
-            <p>
+            <p className="text-muted ">
               Free account
               <br></br>
               opening
@@ -26,7 +26,7 @@ function Pricing() {
           </div>
           <div className="pricing-box">
             <img src="media\images\pricing0.svg" alt="pricing" />
-            <p>
+            <p className="text-muted ">
               Free equity delivery
               <br></br>
               and direct mutual funds
@@ -42,20 +42,9 @@ function Pricing() {
           </div>
         </div>
       </div>
-      <div className="row">
-        <div className="col-6">
-          <div>
-            <img src="media\images\education.svg" alt="Varsity" />
-          </div>
-        </div>
-        <div className="col-6">
-          <h2>Free and open market education</h2>
-          <p>
-            Varsity, the largest online stock market education book in the world
-            covering everything from the basics to advanced trading.
-          </p>
-        </div>
-      </div>
+
+      <div className="row" style={{ height: "200px", width: "100%" }}></div>
+
     </div>
   );
 }
