@@ -13,7 +13,7 @@ function Education() {
         </div>
         <div className="col-6">
           <div className="mb-5">
-            <h2 className="mb-4 fs-2">Free and open market education</h2>
+            <h2 className="mb-4 fs-2" style={{color:"#424242"}}>Free and open market education</h2>
             <p className="text-muted">
               Varsity, the largest online stock market education book in the
               world covering <br />

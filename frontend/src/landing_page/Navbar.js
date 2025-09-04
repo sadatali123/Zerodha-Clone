@@ -1,9 +1,10 @@
 import React from "react";
+import "../index.css";
 
 function Navbar() {
   return (
       <nav class="navbar navbar-expand-lg border-bottom" style={{backgroundColor:"#fff",height:"70px"}}>
-        <div class="container-fluid">
+        <div class="container p-5">
           <a class="navbar-brand" href="#">
             <img src="media\images\logo.svg" alt="Logo" style={{width:"25%"}}/>
           </a>

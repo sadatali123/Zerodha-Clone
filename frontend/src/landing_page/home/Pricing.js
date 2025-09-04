@@ -6,7 +6,7 @@ function Pricing() {
     <div className="container">
       <div className="row mx-5">
         <div className="col-5">
-          <h2 className="fs-2">Unbeatable pricing</h2>
+          <h2 className="fs-2" style={{color:"#424242"}}>Unbeatable pricing</h2>
           <p className="text-muted mt-4">
             We pioneered the concept of discount broking and price transparency
             in India. Flat fees and no hidden charges.

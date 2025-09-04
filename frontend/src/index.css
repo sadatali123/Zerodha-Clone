@@ -56,3 +56,25 @@ pricing-box p{
     color: #666;
     line-height: 16px
 }
+
+.nav-link:hover{
+  color:rgb(72, 72, 229)
+}
+
+.nav-link{
+  margin-left: 20px;
+  
+}
+
+.navbar-nav{
+  margin-left: 60px;
+}
+
+.footer a{
+  text-decoration: none;
+  color: #666;
+} 
+
+.footer a:hover{
+  color: rgb(72, 72, 229);
+}
