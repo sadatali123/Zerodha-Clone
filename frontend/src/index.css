@@ -5,6 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  color:#424242
 }
 
 code {
@@ -58,7 +59,7 @@ pricing-box p{
 }
 
 .nav-link:hover{
-  color:rgb(72, 72, 229)
+  color:rgb(72, 72, 229);
 }
 
 .nav-link{
@@ -70,7 +71,7 @@ pricing-box p{
   margin-left: 60px;
 }
 
-.footer a{
+footer a{
   text-decoration: none;
   color: #666;
 } 
