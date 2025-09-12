@@ -87,6 +87,7 @@ function Universe() {
           </p>
         </div>
       </div>
+      <button type="button" className="btn btn-primary button mt-5">Sign up for free</button>
     </div>
   );
 }
