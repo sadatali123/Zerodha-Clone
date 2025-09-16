@@ -1,9 +1,9 @@
 import React from 'react';
-
+import Hero from "./Hero"
 
 function SupportPage() {
   return (
-       <div>Support Page </div>  
+       < Hero />
     );
 }
 export default SupportPage;
