@@ -79,3 +79,7 @@ footer a{
 .footer a:hover{
   color: rgb(72, 72, 229);
 }
+
+a {
+ text-decoration: none;
+}
