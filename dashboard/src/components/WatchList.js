@@ -1,12 +1,10 @@
-import React from 'react';
-
-// import React, { useState, useContext } from "react";
+import React, { useState, useContext } from "react";
 
 // import axios from "axios";
 
 // import GeneralContext from "./GeneralContext";
 
-// import { Tooltip, Grow } from "@mui/material";
+import { Tooltip, Grow } from "@mui/material";
 
 // import {
 //   BarChartOutlined,
@@ -15,7 +13,7 @@ import React from 'react';
 //   MoreHoriz,
 // } from "@mui/icons-material";
 
-// import { watchlist } from "../data/data";
+ import { watchlist } from "../data/Data";
 // import { DoughnutChart } from "./DoughnoutChart";
 
 // const labels = watchlist.map((subArray) => subArray["name"]);
@@ -85,14 +83,14 @@ const WatchList = () => {
           className="search"
         />
         {/* <span className="counts"> {watchlist.length} / 50</span> */}
-        <span className="counts"> 9/50</span>
+        <span className="counts"> {watchlist.length}/50</span>
       </div>
 
-      {/* <ul className="list">
+       <ul className="list">
         {watchlist.map((stock, index) => {
-          return <WatchListItem stock={stock} key={index} />;
+         <WatchListItem stock={stock} key={index} />;
         })}
-      </ul> */}
+      </ul>  
 
       {/* <DoughnutChart data={data} /> */}
     </div>

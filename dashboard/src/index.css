@@ -225,7 +225,7 @@ code {
 .col h5 {
   font-size: 1.8rem;
   color: rgb(71, 71, 71);
-  font-weight: 300;
+  font-weight: 300; 
 }
 
 .col h5 span {
