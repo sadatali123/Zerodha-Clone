@@ -3,16 +3,23 @@ import "../../index.css";
 
 function Hero() {
   return (
-    <div className="container mt-5 ">
-      <div className="row">
-        <h2 className="mb-4 fs-1 fw-semibold" style={{ marginLeft: "114px" }}>
+    <div className="container-fluid ">
+      <div className="row bg-light pt-5" style={{height:"100px"}}>
+        <div className="col-4">
+          <h2 className="mb-4 fs-1 fw-semibold" style={{ marginLeft: "120px" }}>
           Support Portal
-        </h2>
-        {/* <button className="btn btn-primary"
-        style={{width:"10%", marginLeft:"1060px"}}> My Tickets</button> */}
+          </h2>
+        </div>
+
+        <div className="col-6"></div>
+
+      <div className="col-2">
+      <button className="btn btn-primary" style={{height:"40px"}}>My Tickets</button>
+      </div>
+        
       </div>
 
-      <div className="row">
+      <div className="row bg-light pt-4" style={{height:"120px"}}>
         <div className="col-1"></div>
         <div className="col-10">
           <input
@@ -297,8 +304,8 @@ function Hero() {
           </div>
 
           <div className="card">
-            <div className="card-body">
-              <h6>Quick links</h6>
+            <div className="card-body ">
+              <h6 className="fs-5">Quick links</h6>
               <ul className="list-unstyled ">
                 <li>
                   <a href="#" style={{lineHeight:"2.5"}}>1. Track account opening</a>
