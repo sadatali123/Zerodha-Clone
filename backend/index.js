@@ -8,6 +8,19 @@ const uri = process.env.MONGO_URL; // it is used to connect to mongoDB
 const { HoldingsModel } = require("./model/HoldingsModel");
 const {PositionsModel} = require("./model/PositionsModel");
 
+const bodyParser = require("body-parser");
+const cors = require("cors");
+app.use(bodyParser.json());  // to parse JSON data in request body
+const cookieParser = require("cookie-parser"); // to parse cookies from browser
+app.use(cookieParser());
+const authRoute = require("./routes/AuthRoute");
+app.use("/", authRoute);
+
+app.use(cors({
+  origin: ["http://localhost:3000", "http://localhost:3001"], // add frontend URLs
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  credentials: true,  // This is important for cookies
+}));
 
 // app.post("/add-holdings", async (req, res) => {
   //   let tempholdingsData = [
@@ -180,6 +193,7 @@ const {PositionsModel} = require("./model/PositionsModel");
 
 
 // get holdings data from MongoDB
+
 app.get("/get-holdings", async (req, res) => {
   let holdingsData = await HoldingsModel.find({});
   res.send(holdingsData);
@@ -190,8 +204,12 @@ app.get("/get-positions", async (req, res) => {
   let positionsData = await PositionsModel.find({});
   res.send(positionsData);
 });
+
 app.listen(PORT, () => {
   console.log("Server running on port 3002");
   mongoose.connect(uri);
   console.log("MongoDB connected");
 });
+
+
+app.use(express.json());
