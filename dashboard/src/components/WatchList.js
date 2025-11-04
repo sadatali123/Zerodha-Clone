@@ -84,7 +84,6 @@ const WatchList = () => {
           placeholder="Search eg:infy, bse, nifty fut weekly, gold mcx"
           className="search"
         />
-        {/* <span className="counts"> {watchlist.length} / 50</span> */}
         <span className="counts"> {watchlist.length}/50</span>
       </div>
 
