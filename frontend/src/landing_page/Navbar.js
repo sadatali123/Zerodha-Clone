@@ -2,8 +2,6 @@ import React from "react";
 import "../index.css";
 import { Link } from "react-router-dom";
 
-
-
 function Navbar() {
   return (
       <nav class="navbar navbar-expand-lg sticky-top border-bottom" style={{backgroundColor:"#fff",height:"70px"}}>
