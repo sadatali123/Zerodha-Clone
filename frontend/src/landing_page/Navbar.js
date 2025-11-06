@@ -23,7 +23,7 @@ function Navbar() {
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               <li class="nav-item">
-                 <a className="nav-link active" aria-current="page" href="https://zerodha-clone-dashboard.vercel.app/register">
+                 <a className="nav-link active" aria-current="page" href="https://zerodha-clone-dashboard-ebon.vercel.app/signup">
                   Signup
                 </a>
               </li>
