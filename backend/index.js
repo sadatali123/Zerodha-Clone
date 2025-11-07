@@ -17,7 +17,7 @@ const authRoute = require("./routes/AuthRoute");
 app.use("/", authRoute);
 
 app.use(cors({
-  origin: ["https:/zerodha-clone-client.vercel.app", " https://zerodha-clone-dashboard-ebon.vercel.app"], // add frontend URLs
+  origin: ["https://zerodha-clone-client.vercel.app", " https://zerodha-clone-dashboard-ebon.vercel.app"], // add frontend URLs
   methods: ["GET", "POST", "PUT", "DELETE"],
   credentials: true,  // This is important for cookies
 }));
