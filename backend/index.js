@@ -10,17 +10,23 @@ const {PositionsModel} = require("./model/PositionsModel");
 
 const bodyParser = require("body-parser");
 const cors = require("cors");
-app.use(bodyParser.json());  // to parse JSON data in request body
 const cookieParser = require("cookie-parser"); // to parse cookies from browser
+
+// Configure CORS before any routes
+app.use(cors({
+  origin: ["https://zerodha-clone-client.vercel.app", "https://zerodha-clone-dashboard-ebon.vercel.app"],
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  credentials: true,  // This is important for cookies
+  allowedHeaders: ['Content-Type', 'Authorization']
+}));
+
+// Apply other middleware
+app.use(bodyParser.json());  // to parse JSON data in request body
 app.use(cookieParser());
+
+// Apply routes after all middleware
 const authRoute = require("./routes/AuthRoute");
 app.use("/", authRoute);
-
-app.use(cors({
-  origin: ["https://zerodha-clone-client.vercel.app", " https://zerodha-clone-dashboard-ebon.vercel.app"], // add frontend URLs
-  methods: ["GET", "POST", "PUT", "DELETE"],
-  credentials: true,  // This is important for cookies
-}));
 
 // app.post("/add-holdings", async (req, res) => {
   //   let tempholdingsData = [
