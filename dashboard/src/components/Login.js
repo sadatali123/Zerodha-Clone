@@ -36,7 +36,7 @@ export default function Login() {
       password: formData.get("password"),
     };
     axios
-      .post("https://zerodha-backend-60pf.onrender.com/user/login", data, {
+      .post("https://zerodha-backend-60pf.onrender.com/login", data, {
         headers: {
           "Content-Type": "application/json",
         },
