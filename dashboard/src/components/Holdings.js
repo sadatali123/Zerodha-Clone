@@ -12,7 +12,7 @@ const [allHoldings, setAllHoldings] = useState([]);
 //here we will fetch holdings data from backend
 // Empty dependency array means it runs only once when component mounts
 useEffect(() => {
-  axios.get("http://localhost:3002/get-holdings").then ((response) => {
+  axios.get("https://zerodha-backend-60pf.onrender.com/get-holdings").then ((response) => {
     setAllHoldings(response.data);
   });
 
