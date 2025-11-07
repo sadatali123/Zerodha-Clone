@@ -16,7 +16,7 @@ import axios from "axios";
 
 import { useAuth } from "../hooks/useAuth";
 import { Signup } from "../../../backend/controllers/AuthController";
-import ".signUp.css";
+import "./signUp.css";
 const defaultTheme = createTheme();
 
 export default function Register() {
