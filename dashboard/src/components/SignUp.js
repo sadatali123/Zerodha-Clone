@@ -9,13 +9,13 @@ import Box from "@mui/material/Box";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
-import FavoriteIcon from "@mui/icons-material/Favorite";
+//import FavoriteIcon from "@mui/icons-material/Favorite";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import Alert from "@mui/material/Alert";
 import axios from "axios";
 
 import { useAuth } from "../hooks/useAuth";
-import { Signup } from "../../../backend/controllers/AuthController";
+//import { Signup } from "../../../backend/controllers/AuthController";
 const defaultTheme = createTheme();
 
 export default function Register() {
