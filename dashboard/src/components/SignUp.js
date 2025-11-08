@@ -135,6 +135,5 @@ export default function Register() {
     </Box>
   </Container>
 </ThemeProvider>
-
-  );
+);
 }
