@@ -41,6 +41,7 @@ export default function Register() {
 
     if (!data.username || !data.email || !data.password) {
       setAlert({ st: true, msg: "Enter Valid Details" });
+      return;
     }
 
     axios
@@ -48,9 +49,15 @@ export default function Register() {
         headers: {
           "Content-Type": "application/json",
         },
+        withCredentials: true,
       })
       .then(async (res) => {
-        await login(res.data.token);
+        if (res.data.success) {
+          await login(res.data.token);
+          navigate("/");
+        } else {
+          setAlert({ st: true, msg: res.data.message || "Signup failed" });
+        }
       })
       .catch((error) => {
         if (error.response) {

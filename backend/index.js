@@ -14,7 +14,7 @@ const cookieParser = require("cookie-parser"); // to parse cookies from browser
 
 // Configure CORS before any routes
 app.use(cors({
-  origin: ["https://zerodha-clone-client.vercel.app", "https://zerodha-clone-dashboard-ebon.vercel.app"],
+  origin: ["https://zerodha-clone-client.vercel.app", "https://zerodha-clone-dashboard-ebon.vercel.app", "http://localhost:3000"],
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
   credentials: true,  // This is important for cookies
   allowedHeaders: ['Content-Type', 'Authorization']

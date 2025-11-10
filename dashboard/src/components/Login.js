@@ -36,13 +36,19 @@ export default function Login() {
       password: formData.get("password"),
     };
     axios
-      .post("https://zerodha-backend-60pf.onrender.com/login", data, {
+      .post("https://zerodha-backend-60pf.onrender.com/login", formData, {
         headers: {
           "Content-Type": "application/json",
         },
+        withCredentials: true,
       })
       .then(async (res) => {
-        await login(res.data.token);
+        if (res.data.success) {
+          await login(res.data.token);
+          navigate("/");
+        } else {
+          setAlert({ st: true, msg: res.data.message || "Login failed" });
+        }
       })
       .catch((error) => {
         if (error.response) {
