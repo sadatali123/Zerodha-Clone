@@ -19,7 +19,8 @@ import { useAuth } from "../hooks/useAuth";
 const defaultTheme = createTheme();
 
 export default function Register() {
-  let [alert, setAlert] = React.useState({ st: false, msg: "" });
+  let [alert, setAlert] = React.useState({ st: false, msg: "", severity: "error" });
+  const [isLoading, setIsLoading] = React.useState(false);
   const navigate = useNavigate();
   const { login, user } = useAuth();
 
@@ -44,6 +45,7 @@ export default function Register() {
       return;
     }
 
+    setIsLoading(true);
     axios
       .post("https://zerodha-backend-60pf.onrender.com/signup", data, {
         headers: {
@@ -53,20 +55,24 @@ export default function Register() {
       })
       .then(async (res) => {
         if (res.data.success) {
+          setAlert({ st: true, msg: "Signup successful! Redirecting...", severity: "success" });
           await login(res.data.token);
-          navigate("/");
+          setTimeout(() => navigate("/"), 1500); // Delay to show success message
         } else {
-          setAlert({ st: true, msg: res.data.message || "Signup failed" });
+          setAlert({ st: true, msg: res.data.message || "Signup failed", severity: "error" });
         }
       })
       .catch((error) => {
         if (error.response) {
-          setAlert({ st: true, msg: error.response.data.error });
+          setAlert({ st: true, msg: error.response.data.error, severity: "error" });
         } else if (error.request) {
-          setAlert({ st: true, msg: "Network Error" });
+          setAlert({ st: true, msg: "Network Error", severity: "error" });
         } else {
-          setAlert({ st: true, msg: "Something Went Wrong" });
+          setAlert({ st: true, msg: "Something Went Wrong", severity: "error" });
         }
+      })
+      .finally(() => {
+        setIsLoading(false);
       });
   };
 
@@ -93,7 +99,7 @@ export default function Register() {
         Signup Now
       </Typography>
       <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }}>
-        {alert.st && <Alert severity="error">{alert.msg}</Alert>}
+        {alert.st && <Alert severity={alert.severity}>{alert.msg}</Alert>}
         <TextField
           margin="normal"
           required
@@ -128,8 +134,9 @@ export default function Register() {
           fullWidth
           variant="contained"
           sx={{ mt: 3, mb: 2, bgcolor: "primary.main" }}
+          disabled={isLoading}
         >
-          Sign Up
+          {isLoading ? "Signing up..." : "Sign Up"}
         </Button>
         <Grid container justifyContent="flex-end">
           <Grid item>

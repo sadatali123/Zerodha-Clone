@@ -12,15 +12,14 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 const cookieParser = require("cookie-parser"); // to parse cookies from browser
 
-// Configure CORS before any routes
+
 app.use(cors({
-  origin: ["https://zerodha-clone-client.vercel.app", "https://zerodha-clone-dashboard-ebon.vercel.app", "http://localhost:3000"],
+  origin: ["https://zerodha-clone-client.vercel.app", "https://zerodha-clone-dashboard-ebon.vercel.app"],
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-  credentials: true,  // This is important for cookies
+  credentials: true, 
   allowedHeaders: ['Content-Type', 'Authorization']
 }));
 
-// Apply other middleware
 app.use(bodyParser.json());  // to parse JSON data in request body
 app.use(cookieParser());
 

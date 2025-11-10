@@ -18,7 +18,8 @@ import { useAuth } from "../hooks/useAuth";
 const defaultTheme = createTheme();
 
 export default function Login() {
-  let [alert, setAlert] = React.useState({ st: false, msg: "" });
+  let [alert, setAlert] = React.useState({ st: false, msg: "", severity: "error" });
+  const [isLoading, setIsLoading] = React.useState(false);
   const navigate = useNavigate();
   const { login, user } = useAuth();
 
@@ -35,8 +36,9 @@ export default function Login() {
       email: formData.get("email"),
       password: formData.get("password"),
     };
+    setIsLoading(true);
     axios
-      .post("https://zerodha-backend-60pf.onrender.com/login", formData, {
+      .post("https://zerodha-backend-60pf.onrender.com/login", data, {
         headers: {
           "Content-Type": "application/json",
         },
@@ -44,20 +46,24 @@ export default function Login() {
       })
       .then(async (res) => {
         if (res.data.success) {
+          setAlert({ st: true, msg: "Login successful! Redirecting...", severity: "success" });
           await login(res.data.token);
-          navigate("/");
+          setTimeout(() => navigate("/"), 1500); // Delay to show success message
         } else {
-          setAlert({ st: true, msg: res.data.message || "Login failed" });
+          setAlert({ st: true, msg: res.data.message || "Login failed", severity: "error" });
         }
       })
       .catch((error) => {
         if (error.response) {
-          setAlert({ st: true, msg: error.response.data.error });
+          setAlert({ st: true, msg: error.response.data.error, severity: "error" });
         } else if (error.request) {
-          setAlert({ st: true, msg: "Network Error" });
+          setAlert({ st: true, msg: "Network Error", severity: "error" });
         } else {
-          setAlert({ st: true, msg: "Something Went Wrong" });
+          setAlert({ st: true, msg: "Something Went Wrong", severity: "error" });
         }
+      })
+      .finally(() => {
+        setIsLoading(false);
       });
   };
 
@@ -80,11 +86,17 @@ export default function Login() {
             Login
           </Typography>
           <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
-            {alert.st == true ? <Alert severity="error">{alert.msg}</Alert> : null}
+            {alert.st && <Alert severity={alert.severity}>{alert.msg}</Alert>}
             <TextField margin="normal" required fullWidth id="email" label="Email Address" name="email" autoComplete="email" autoFocus />
             <TextField margin="normal" required fullWidth name="password" label="Password" type="password" id="password" autoComplete="current-password" />
-            <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
-              Sign In
+            <Button 
+              type="submit" 
+              fullWidth 
+              variant="contained" 
+              sx={{ mt: 3, mb: 2 }}
+              disabled={isLoading}
+            >
+              {isLoading ? "Signing in..." : "Sign In"}
             </Button>
             <Grid container>
               <Grid item>
