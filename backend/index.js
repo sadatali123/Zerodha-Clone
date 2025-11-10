@@ -1,7 +1,6 @@
 const express = require("express");
 const app = express();
-
-require("dotenv").config(); // helps to read .env file and added to process.env
+const dotenv = require("dotenv").config(); // helps to read .env file and added to process.env
 const mongoose = require("mongoose");
 const PORT = process.env.PORT || 3002; // it is used to set the port number
 const uri = process.env.MONGO_URL; // it is used to connect to mongoDB
@@ -14,7 +13,7 @@ const cookieParser = require("cookie-parser"); // to parse cookies from browser
 
 
 app.use(cors({
-  origin: ["https://zerodha-clone-client.vercel.app", "https://zerodha-clone-dashboard-ebon.vercel.app"],
+  origin: [process.env.FRONTEND_URL, process.env.DASHBOARD_URL],
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
   credentials: true, 
   allowedHeaders: ['Content-Type', 'Authorization']
