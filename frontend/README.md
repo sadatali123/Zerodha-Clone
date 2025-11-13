@@ -1,2 +1,0 @@
-🌐 Zerodha Clone
-Welcome to Zerodha Clone – a MERN stack-based stock trading platform inspired by the popular Zerodha app. This project replicates essential features like authentication, dashboard, orders, and more to give users an interactive trading experience. 📈
