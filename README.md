@@ -132,12 +132,21 @@ Open your browser at http://localhost:3000
 📸 Screenshots
 
 Home Page:
+<p align="center">
 <img src="screenshots/HomePage.png" alt="Home Page Screenshot" width="700" />
+</p>
+
 
 Dashboard:
+<p align="center">
 <img src="screenshots/DashBoard.png" alt="Dashboard Screenshot" width="700" />
+</p>
+
 ---
 ## <a name="license">📜 License</a>
 
 This project is licensed under the MIT License.
 You’re free to use, modify, and distribute this project for learning or open-source purposes.
+
+---
+<div align="center"> <h3>Made with ❤️ by <a href="https://github.com/sadatali123">Sadat Ali</a></h3> </div>
