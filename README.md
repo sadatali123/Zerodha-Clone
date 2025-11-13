@@ -43,7 +43,7 @@ This project demonstrates the use of **React.js** for the frontend, **Express.js
 - **Frontend:** React.js  
 - **Backend:** Node.js + Express.js  
 - **Database:** MongoDB  
-- **Deployment:** Vercel / Render (optional for live demo)  
+- **Deployment:** Vercel and Render   
 
 ---
 
@@ -135,8 +135,8 @@ Home Page:
 <img src="screenshots/HomePage.png" alt="Home Page Screenshot" width="700" />
 
 Dashboard:
-<img src="screenshots\DashBoard.png" alt="Dashboard Screenshot" width="700" />
- ---
+<img src="screenshots/DashBoard.png" alt="Dashboard Screenshot" width="700" />
+---
 ## <a name="license">📜 License</a>
 
 This project is licensed under the MIT License.
