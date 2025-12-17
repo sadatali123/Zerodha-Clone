@@ -63,6 +63,9 @@ const WatchList = () => {
             updated[ticker] = {
               ...updated[ticker],
               ...prices[ticker],
+              change: typeof prices[ticker]?.change === 'number' 
+                ? prices[ticker].change 
+                : parseFloat(prices[ticker]?.change || 0),
             };
           }
         });
@@ -176,8 +179,8 @@ const WatchListItem = ({ stock, priceData, sentiment }) => {
     setShowWatchlistActions(false);
   };
 
-  const changePercent = priceData.change
-    ? `${priceData.isUp ? "+" : ""}${priceData.change.toFixed(2)}%`
+  const changePercent = priceData.change !== undefined && priceData.change !== null
+    ? `${priceData.isUp ? "+" : ""}${Number(priceData.change).toFixed(2)}%`
     : stock.percent;
 
   return (
