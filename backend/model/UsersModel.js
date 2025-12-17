@@ -15,6 +15,22 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: [true, "Your password is required"],
   },
+  virtualCash: {
+    type: Number,
+    default: 1000000, // ₹10,00,000 initial virtual cash
+  },
+  totalPnL: {
+    type: Number,
+    default: 0,
+  },
+  weeklyPnL: {
+    type: Number,
+    default: 0,
+  },
+  lastResetDate: {
+    type: Date,
+    default: new Date(),
+  },
   createdAt: {
     type: Date,
     default: new Date(),

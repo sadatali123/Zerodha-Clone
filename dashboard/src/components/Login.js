@@ -12,7 +12,6 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import Alert from "@mui/material/Alert";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-
 import { useAuth } from "../hooks/useAuth";
 
 const defaultTheme = createTheme();
