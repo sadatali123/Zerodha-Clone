@@ -1,11 +1,7 @@
 const express = require("express");
 const app = express();
-const http = require("http");
-const server = http.createServer(app);
-const { Server } = require("socket.io");
 const dotenv = require("dotenv").config(); // helps to read .env file and added to process.env
 const mongoose = require("mongoose");
-const cron = require("node-cron");
 const PORT = process.env.PORT || 3002; // it is used to set the port number
 const uri = process.env.MONGO_URL; // it is used to connect to mongoDB
 const { HoldingsModel } = require("./model/HoldingsModel");
@@ -15,17 +11,9 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 const cookieParser = require("cookie-parser"); // to parse cookies from browser
 
-// Initialize Socket.io
-const io = new Server(server, {
-  cors: {
-    origin: ["https://zerodha-clone-client.vercel.app", "https://zerodha-clone-dashboard-ebon.vercel.app", "http://localhost:3000", "http://localhost:3001"],
-    methods: ["GET", "POST"],
-    credentials: true,
-  },
-});
 
 app.use(cors({
-  origin: ["https://zerodha-clone-client.vercel.app", "https://zerodha-clone-dashboard-ebon.vercel.app", "http://localhost:3000", "http://localhost:3001"],
+  origin: ["https://zerodha-clone-client.vercel.app", "https://zerodha-clone-dashboard-ebon.vercel.app"],
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
   credentials: true, 
   allowedHeaders: ['Content-Type', 'Authorization']
@@ -33,18 +21,10 @@ app.use(cors({
 
 app.use(bodyParser.json());  // to parse JSON data in request body
 app.use(cookieParser());
-app.use(express.json());
 
 // Apply routes after all middleware
 const authRoute = require("./routes/AuthRoute");
-const strategyRoute = require("./routes/StrategyRoute");
-const leaderboardRoute = require("./routes/LeaderboardRoute");
-const sentimentRoute = require("./routes/SentimentRoute");
-
 app.use("/", authRoute);
-app.use("/api/strategies", strategyRoute);
-app.use("/api/leaderboard", leaderboardRoute);
-app.use("/api/sentiment", sentimentRoute);
 
 // app.post("/add-holdings", async (req, res) => {
   //   let tempholdingsData = [
@@ -217,116 +197,23 @@ app.use("/api/sentiment", sentimentRoute);
 
 
 // get holdings data from MongoDB
-const { authenticateToken } = require("./middlewares/AuthMiddleware");
 
-app.get("/get-holdings", authenticateToken, async (req, res) => {
-  try {
-    let holdingsData = await HoldingsModel.find({ userId: req.userId });
-    res.send(holdingsData);
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: "Error fetching holdings" });
-  }
+app.get("/get-holdings", async (req, res) => {
+  let holdingsData = await HoldingsModel.find({});
+  res.send(holdingsData);
 });
 
 // get positions data from MongoDB
-app.get("/get-positions", authenticateToken, async (req, res) => {
-  try {
-    let positionsData = await PositionsModel.find({ userId: req.userId });
-    res.send(positionsData);
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: "Error fetching positions" });
-  }
+app.get("/get-positions", async (req, res) => {
+  let positionsData = await PositionsModel.find({});
+  res.send(positionsData);
 });
 
-// Price service for real-time updates
-const { updatePrice, getAllPrices } = require("./services/PriceService");
-
-// Socket.io connection handling
-io.on("connection", (socket) => {
-  console.log("Client connected:", socket.id);
-
-  // Subscribe to price updates for a ticker
-  socket.on("subscribe", (ticker) => {
-    socket.join(`ticker:${ticker}`);
-    console.log(`Client ${socket.id} subscribed to ${ticker}`);
-  });
-
-  // Unsubscribe from price updates
-  socket.on("unsubscribe", (ticker) => {
-    socket.leave(`ticker:${ticker}`);
-    console.log(`Client ${socket.id} unsubscribed from ${ticker}`);
-  });
-
-  socket.on("disconnect", () => {
-    console.log("Client disconnected:", socket.id);
-  });
-});
-
-// Broadcast price updates every 2 seconds
-setInterval(() => {
-  const prices = getAllPrices();
-  const updatedPrices = {};
-
-  Object.keys(prices).forEach((ticker) => {
-    const oldPrice = prices[ticker];
-    const newPrice = updatePrice(ticker);
-    const change = ((newPrice - oldPrice) / oldPrice) * 100;
-    
-    updatedPrices[ticker] = {
-      price: newPrice,
-      change: change.toFixed(2),
-      isUp: change >= 0,
-    };
-
-    // Emit to all clients subscribed to this ticker
-    io.to(`ticker:${ticker}`).emit("priceUpdate", {
-      ticker,
-      price: newPrice,
-      change: change.toFixed(2),
-      isUp: change >= 0,
-    });
-  });
-
-  // Broadcast all prices to all connected clients
-  io.emit("allPrices", updatedPrices);
-}, 2000);
-
-// Cron job to check and execute strategies every minute
-cron.schedule("* * * * *", async () => {
-  try {
-    const Strategy = require("./model/StrategyModel");
-    const { executeStrategy } = require("./controllers/StrategyController");
-    const { getCurrentPrice } = require("./services/PriceService");
-
-    const activeStrategies = await Strategy.find({ isActive: true });
-
-    for (const strategy of activeStrategies) {
-      const currentPrice = getCurrentPrice(strategy.ticker);
-      await executeStrategy(strategy, currentPrice);
-    }
-  } catch (error) {
-    console.error("Error in strategy execution cron job:", error);
-  }
-});
-
-// Cron job to update P&L every 5 minutes
-cron.schedule("*/5 * * * *", async () => {
-  try {
-    const { updateAllUsersPnL } = require("./util/updatePnL");
-    await updateAllUsersPnL();
-    console.log("P&L updated for all users");
-  } catch (error) {
-    console.error("Error updating P&L:", error);
-  }
-});
-
-// Make io available to other modules
-app.set("io", io);
-
-server.listen(PORT, () => {
-  console.log("Server running on port", PORT);
+app.listen(PORT, () => {
+  console.log("Server running on port 3002");
   mongoose.connect(uri);
   console.log("MongoDB connected");
 });
+
+
+app.use(express.json());

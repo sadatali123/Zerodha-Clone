@@ -18,19 +18,3 @@ module.exports.userVerification = (req, res) => {
     }
   })
 }
-
-// Middleware to extract userId from token
-module.exports.authenticateToken = (req, res, next) => {
-  const token = req.cookies.token;
-  if (!token) {
-    return res.status(401).json({ message: "Authentication required" });
-  }
-
-  jwt.verify(token, process.env.TOKEN_KEY, async (err, data) => {
-    if (err) {
-      return res.status(403).json({ message: "Invalid or expired token" });
-    }
-    req.userId = data.id;
-    next();
-  });
-};

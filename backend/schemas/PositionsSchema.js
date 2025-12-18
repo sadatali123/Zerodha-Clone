@@ -1,11 +1,7 @@
 const {Schema} = require("mongoose");
 
 const PositionsSchema = new Schema({
-    userId: {
-        type: Schema.Types.ObjectId,
-        ref: "User",
-    },
-    product: String,
+     product: String,
     name: String,
     qty: Number,
     avg: Number,

@@ -9,8 +9,6 @@ import Orders from "./Orders";
 import Positions from "./Positions";
 import Summary from "./Summary";
 import WatchList from "./WatchList";
-import StrategyBuilder from "./StrategyBuilder";
-import Leaderboard from "./Leaderboard";
 
 // import { GeneralContextProvider } from "../context/GeneralContext";
 
@@ -28,8 +26,6 @@ const DashboardUI = () => {
           <Route path="/positions" element={<Positions />} />
           <Route path="/funds" element={<Funds />} />
           <Route path="/apps" element={<Apps />} />
-          <Route path="/strategies" element={<StrategyBuilder />} />
-          <Route path="/leaderboard" element={<Leaderboard />} />
         </Routes>
       </div>
     </div>
